@@ -17,7 +17,15 @@ type WebApp struct {
 }
 
 func Load() *Config {
-	return &Config{}
+	return &Config{
+		Application: Application{
+			Port: getEnv("APPLICATION_PORT", "8082"),
+		},
+		WebApp: WebApp{
+			Port: getEnv("WEB_APP_PORT", "ims"),
+			Name: getEnv("WEB_APP_NAME", "3000"),
+		},
+	}
 }
 
 func getEnv(key string, dValue string) string {
